@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love ❤️</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff85a1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #ee9ca7, #ffdde1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+            padding: 10px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Container */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            margin: 2.5rem auto;
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Floating Polaroid Style */
+        .polaroid {
+            background: white;
+            padding: 12px 12px 35px 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            margin: 25px 0;
+            display: inline-block;
+            width: 95%;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floaty 4s ease-in-out infinite;
+        }
+
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .polaroid:nth-child(even) {
+            animation-delay: 1s;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.2);
+            z-index: 5;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #f0f0f0;
+            display: block;
+        }
+
+        /* Buttons */
+        .btn-main {
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            margin: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+        }
+
+        #noBtn {
+            position: absolute;
+            transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            background: #a1a1a1;
+        }
+
+        .btn-container {
+            position: relative;
+            height: 100px;
+            margin-top: 2rem;
+        }
+
+        /* Typewriter Section */
+        #proposal-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            min-height: 150px;
+            color: #333;
+            text-align: left;
+        }
+
+        /* Floating Elements */
+        .heart-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            animation: floatUp 4.5s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            15% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="player" style="display:none;"></div>
+
+    <div class="glass-card">
+        <h1>Happy Birthday! 🎂</h1>
+        <p style="font-size: 1.1rem; font-style: italic;">My love, you make every second worth living.</p>
+
+        <div class="polaroid">
+            <img src="pic1.jpeg" alt="Us">
+        </div>
+
+        <p>I promise to be your peace in a chaotic world. 🤍</p>
+
+        <div class="polaroid">
+            <img src="pic2.jpeg" alt="Us">
+        </div>
+
+        <p>I don’t know about forever…
+
+            but today, tomorrow, and every day — I choose you 💖</p>
+
+        <div class="polaroid">
+            <img src="pic3.jpeg" alt="Us">
+        </div>
+
+        <button id="musicBtn" class="btn-main">🎵 Play Our Song</button>
+    </div>
+
+    <div class="glass-card" style="animation-delay: 0.5s;">
+        <h2 style="font-family: 'Dancing Script'; font-size: 2.2rem; color: var(--primary); margin-bottom: 1.5rem;">Again, I Propose to You on Your Birthday ❤️</h2>
+        <div id="proposal-text">
+        </div>
+
+        <div class="btn-container">
+            <button id="yesBtn" class="btn-main" onclick="celebrate()">YES! ❤️</button>
+            <button id="noBtn" class="btn-main">NO 🙈</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Typewriter Effect
+        const message = "Hey… I want to tell u something. I’ve been noticing u since June, and from that day on the roof, u completely caught my attention. Ur eyes, ur hair, the way u just exist… it’s honestly unfair how perfect u are. I’m not great at saying these things, but yeah… I like u, maybe more than I should. I kept telling myself it’s not okay but every time I see u, that thought disappears. Maybe u’ll say no, maybe u won’t accept this... Nd it's totally fine. But if there’s even a small part of u that feels the same, then I think we both know this could be the start of something worth exploring.";
+        let i = 0;
+        let isTyping = false;
+
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("proposal-text").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, 45);
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !isTyping) {
+                isTyping = true;
+                typeWriter();
+            }
+        }, { threshold: 0.3 });
+        observer.observe(document.getElementById('proposal-text'));
+
+        // 2. Confetti & Success Message
+        function celebrate() {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff4d6d', '#ffffff']
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff4d6d', '#ffffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            setTimeout(() => {
+                document.body.innerHTML = `
+                <div style="height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background: linear-gradient(-45deg, #ffafbd, #ffc3a0); text-align:center; padding: 20px; animation: fadeIn 1s;">
+                    <h1 style="font-size: 3.5rem; color: #ff4d6d; text-shadow: 2px 2px 15px rgba(255,255,255,0.5); font-family: 'Dancing Script';">Hehehe Dam Madam! ❤️</h1>
+                    <p style="color: #4a4a4a; font-size: 1.6rem; font-weight: bold; margin-top: 20px;">THANK YOU FOR EVERYTHING ....MUWAAAHAHAHAHHAHHAHHAHH💏</p>
+                </div>
+            `;
+            }, 1000);
+        }
+
+        // 3. The "Runaway" No Button
+        const noBtn = document.getElementById("noBtn");
+        noBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.style.zIndex = "1000";
+        });
+
+        // 4. Music Logic
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', width: '0', videoId: 'Mpl6Q1TxEK0',
+                playerVars: { autoplay: 0, start: 133 }
+            });
+        }
+
+        const musicBtn = document.getElementById("musicBtn");
+        musicBtn.addEventListener("click", () => {
+            if (player && player.getPlayerState() !== 1) {
+                player.playVideo();
+                musicBtn.innerHTML = "⏸️ Pause Song";
+            } else if (player) {
+                player.pauseVideo();
+                musicBtn.innerHTML = "🎵 Play Song";
+            }
+        });
+
+        // 5. Constant Enhanced Hearts
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.className = "heart-float";
+            const emojis = ["❤️", "💖", "🌸", "✨", "💕", "🌹"];
+            heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.bottom = "-5vh";
+            heart.style.fontSize = (Math.random() * 25 + 15) + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4500);
+        }, 350);
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+
+</html>
